@@ -1,7 +1,8 @@
+import { type Todo } from "../types"
 export interface Todo {
   id: number
   title: string
-  complered: boolean
+  completed: boolean
 }
 
 
