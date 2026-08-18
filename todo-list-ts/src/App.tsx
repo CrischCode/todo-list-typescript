@@ -1,7 +1,5 @@
-import React, { type JSX } from 'react'
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import { type ListOfTodos } from './types'
+import React, { useState, type JSX } from 'react';
+import { Todos } from './components/Todos';
 
 const mockTodos = [
   {
@@ -19,15 +17,24 @@ const mockTodos = [
     title: 'todo 3',
     completed: false,
   }
-]
+];
 
 const App = (): JSX.Element => {
-  const[todos] = useState(mockTodos)
+  const [todos, setTodos] = useState(mockTodos);
+
+  const handleRemove = (id: string): void => {
+    const newTodos = todos.filter(todo => todo.id !== id);
+    setTodos(newTodos);
+  };
+
   return (
     <div className="todoApp">
-  <Todos todos={todos}/>
-  </div>
-)
-}
+      <Todos
+        todos={todos}
+        onRemoveTodo={handleRemove}
+      />
+    </div>
+  );
+};
 
-export default App
+export default App;
